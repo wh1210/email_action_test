@@ -19,8 +19,10 @@ jobs:
           
       - name: Generate info
         run: |
-          databasename=`jq '.sha' test.json`
-          echo $databasename > test.txt
+          sha=`jq '.sha' test.json`
+          email=`jq '.event.head_commit.author.email' test.json`
+          echo $sha > test.txt
+          echo $email >> test.txt
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
