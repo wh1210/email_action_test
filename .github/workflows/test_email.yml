@@ -19,7 +19,8 @@ jobs:
           
       - name: Generate info
         run: |
-          echo file://test.json
+          databasename=`jq '.sha' test.json`
+          echo $databasename  test.txt
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
@@ -29,7 +30,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Action Email Test
-          body: file://test.json
+          body: file://test.txt
           to: hawu6155@colorado.edu
           from: GitHub Actions
           content_type: text/plain
