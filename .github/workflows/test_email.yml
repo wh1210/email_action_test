@@ -37,6 +37,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Action Email Test
           body: file://test.txt
-          to: ${{ EMAIL }}
+          to: ${{ env.EMAIL }}
           from: GitHub Actions
           content_type: text/plain
