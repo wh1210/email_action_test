@@ -16,8 +16,9 @@ jobs:
         run: |
           echo "$GITHUB_CONTEXT" > test.json
           
-      - run: |
-        echo "${{fromJson(test.json).sha}}" > test.txt
+      - name: Generate info
+        run: |
+          echo "${{fromJson(test.json).sha}}" > test.txt
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
