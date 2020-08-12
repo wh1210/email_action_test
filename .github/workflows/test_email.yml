@@ -14,6 +14,7 @@ jobs:
         env:
             GITHUB_CONTEXT: ${{ toJson(github).sha }}
         run: |
+          echo "$GITHUB_CONTEXT"
           echo "$GITHUB_CONTEXT" > test.json
           
       - name: Generate info
