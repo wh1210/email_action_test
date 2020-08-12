@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: get commit message
         run: |
-          echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event }})
+          echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event }}) > test.txt
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Action Email Test
-          body: This is from Github Action Email.
+          body: test.txt
           to: hawu6155@colorado.edu
           from: GitHub Actions
           content_type: text/plain
