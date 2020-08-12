@@ -20,7 +20,7 @@ jobs:
       - name: Generate info
         run: |
           databasename=`jq '.sha' test.json`
-          echo $databasename  test.txt
+          echo $databasename > test.txt
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
