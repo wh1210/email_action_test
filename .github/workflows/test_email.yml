@@ -21,8 +21,8 @@ jobs:
         run: |
           sha=`jq '.sha' test.json`
           email=`jq '.event.head_commit.author.email' test.json`
-          export email=$email
-          echo ${sha:0:7} > test.txt
+          set-env name=email::$email
+          echo ${sha:0:8} > test.txt
           echo $email >> test.txt
 
       - name: 'Send mail'
@@ -34,6 +34,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Action Email Test
           body: file://test.txt
-          to: hawu6155@colorado.edu
+          to: ${{ email }}
           from: GitHub Actions
           content_type: text/plain
