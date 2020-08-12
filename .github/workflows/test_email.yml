@@ -15,14 +15,9 @@ jobs:
             GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT" > test.json
-    
-      - name: get commit message
-        run: |
-          echo ::set-env name=email::$(git log --format=%B -n 1 ${{ github.event.commits.author.email }})
-
-      - name: show commit message
-        run: |
-          echo $email > test.txt
+          
+      - run: |
+        echo "${{fromJson(test.json).sha}}" > test.txt
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
@@ -32,7 +27,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Action Email Test
-          body: file://test.json
+          body: file://test.txt
           to: hawu6155@colorado.edu
           from: GitHub Actions
           content_type: text/plain
