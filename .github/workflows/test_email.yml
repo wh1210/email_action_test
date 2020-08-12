@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+
+      - name: GITHUB CONTEXT
+        env:
+            GITHUB_CONTEXT: ${{ toJson(giithub) }}
+        run: echo "$GITHUB_CONTEXT"
     
       - name: get commit message
         run: |
