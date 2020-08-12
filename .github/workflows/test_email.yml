@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Action Email Test
-          body: test.txt
+          body: file://test.txt
           to: hawu6155@colorado.edu
           from: GitHub Actions
           content_type: text/plain
