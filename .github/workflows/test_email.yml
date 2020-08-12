@@ -13,7 +13,7 @@ jobs:
           echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event }})
 
       - name: show commit message
-        run: echo $commitmsg > test.txt
+        run: echo "hello" > test.txt
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
