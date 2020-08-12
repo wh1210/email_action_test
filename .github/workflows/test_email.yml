@@ -10,25 +10,10 @@ jobs:
     steps:
       - name: get commit message
         run: |
-          echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event }}) > test.txt
+          echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event }})
 
-      - name: should it be skipped?
-        env:
-        COMMIT_FILTER: "skip-ci"
-        run: | 
-            # Get last commit message
-            readonly local last_commit_log=$(git log -1 --pretty=format:"%s")
-            echo "last commit log: $last_commit_log"
-
-            readonly local filter_count=$(echo "$last_commit_log" | grep -c "$COMMIT_FILTER" )
-            echo "number of occurence of '$COMMIT_FILTER' in '$last_commit_log': $filter_count"
-
-            if [[ "$filter_count" -eq 0 ]]; then
-                echo "all good, continue"
-            else
-                echo "the last commit log \"$last_commit_log\" contains \"$COMMIT_FILTER\", stopping"
-                exit 78
-            fi
+      - name: show commit message
+        run: echo $commitmsg > test.txt
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
