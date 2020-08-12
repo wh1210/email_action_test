@@ -22,7 +22,7 @@ jobs:
           echo ::set-env name=sha::$(git log --format=%B -n 1 ${{ github.sha }})
 
       - name: show commit message
-        run: ｜
+        run: |
           echo $commitmsg > test.txt
           echo $email >> test.txt
           echo $sha >> test.txt
