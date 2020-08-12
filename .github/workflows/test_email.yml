@@ -13,7 +13,8 @@ jobs:
       - name: GITHUB CONTEXT
         env:
             GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: |
+          echo "$GITHUB_CONTEXT" > test.json
     
       - name: get commit message
         run: |
@@ -31,7 +32,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Action Email Test
-          body: file://test.txt
+          body: file://test.json
           to: hawu6155@colorado.edu
           from: GitHub Actions
           content_type: text/plain
