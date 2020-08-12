@@ -23,9 +23,7 @@ jobs:
           email=`jq '.event.head_commit.author.email' test.json`
           echo ${sha:0:8} > test.txt
           echo $email >> test.txt
-        env:
-          EMAIL: $email
-          SHA: ${sha:0:8}
+          echo "::set-env name=EMAIL::${{ email }}"
 
       - name: Test
         run: |
