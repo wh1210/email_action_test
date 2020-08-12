@@ -12,7 +12,7 @@ jobs:
 
       - name: GITHUB CONTEXT
         env:
-            GITHUB_CONTEXT: ${{ toJson(github).sha }}
+            GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
           echo "$GITHUB_CONTEXT" > test.json
