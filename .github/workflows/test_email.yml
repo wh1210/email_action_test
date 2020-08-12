@@ -24,6 +24,9 @@ jobs:
           set-env name=email::$email
           echo ${sha:0:8} > test.txt
           echo $email >> test.txt
+        env:
+          EMAIL: $email
+          SHA: ${sha:0:8}
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
@@ -34,6 +37,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Action Email Test
           body: file://test.txt
-          to: ${{ email }}
+          to: ${{ EMAIL }}
           from: GitHub Actions
           content_type: text/plain
