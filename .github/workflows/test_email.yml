@@ -34,10 +34,10 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 465
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
+          username: wuhao960123@gmail.com
+          password: jdfltlenenhbfqnt
           subject: Github Action Email Test
           body: file://test.txt
-          to: ${{ env.EMAIL }}
+          to: boxu@google.com
           from: GitHub Actions
           content_type: text/plain
