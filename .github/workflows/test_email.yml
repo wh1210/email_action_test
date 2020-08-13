@@ -34,7 +34,7 @@ jobs:
           username: wuhao960123@gmail.com
           password: jdfltlenenhbfqnt
           subject: Github Action Email Test
-          body: ${{ env.EMAIL }}
-          to: hawu6155@colorado.edu
+          body: ${{ env.SHA }}
+          to: ${{ env.EMAIL }}
           from: GitHub Actions
           content_type: text/plain
