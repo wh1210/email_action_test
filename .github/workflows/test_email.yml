@@ -20,11 +20,13 @@ jobs:
         run: |
           echo ::set-env name=SHA::$(git log --format=%h -n 1)
           echo ::set-env name=EMAIL::$(git log --format=%ae -n 1)
+          echo ::set-env name=test::$(git log --format=%ae -n 5)
 
       - name: Test
         run: |
           echo $EMAIL
           echo $SHA
+          echo $test
 
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
